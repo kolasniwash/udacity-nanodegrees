@@ -15,62 +15,19 @@ This project builds a Postgres database and ETL process that prepares and loads 
 - pandas
 
 ## Database Schema
-Below are the schema tables for both fact and dimension tables. The design is a start schema and optimized for analytic queries. In this sense few joins are needed in order to pull insights from the underlying data.
+Below is the entity relation schema for the sparkify databse. Names of the fact and dimension tables are also provided. The design is a star schema and optimized for analytic queries. In this sense few joins are needed in order to pull insights from the underlying data.
 
-### Fact Tables
+<img src="img/sparkify-er-diagram.png" width=800 height=400 align="middle">
 
-Name: songplays
-|Column Name | Type|
+### Table Descrptions
+
+|Table Name | Type|
 |---|---|
-|songplay_id | int | 
-|start_time | TIMESTAMP| 
-|user_id | int |
-|level | varchar|
-|song_id | varchar | 
-|artist_id | varchar |
-|session_id | int |
-|location | varchar |
-|user_agent | varchar |
-
-### Dimension Tables
-
-Name:users
-|Column Name | Type|
-|---|---|
-| user_id | int |
-| first_name | varchar |
-| last_name | varchar |
-| gender | varchar |
-| level | varchar |
-
-Name: songs
-|Column Name | Type|
-|---|---|
-|song_id | varchar|
-|title | varchar | 
-|artist_id | varchar | 
-|year | int |
-|duration | float |
-
-Name: artists
-|Column Name | Type|
-|---|---|
-|artist_id |varchar |
-|name | varchar |
-|location | varchar |
-|latitude | float |
-|longitude | float |
-
-Name: time
-|Column Name | Type|
-|---|---|
-|start_time | timestamp |
-|hour | int |
-|day | int |
-|week | int |
-|month | int |
-|year | int |
-|weekday | int |
+|songplays | fact | 
+|users | dimension| 
+|songs | dimension |
+|artists | dimension|
+|time | dimension | 
 
 ## ETL Processing
 

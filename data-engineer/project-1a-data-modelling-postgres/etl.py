@@ -6,6 +6,16 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """
+    Function that processes and inserts rows into the songs table and artists table. 
+    
+    INPUTS:
+        cur: cursor object from the psycopg2 package
+        filepath: str. path to the song's JSON file
+    """
+    
+    
+    
     # open song file
     df = pd.read_json(filepath, lines=True)
 
@@ -24,6 +34,15 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """
+    Function that processes and inserts row data into the time, user and songplays tables. Time is converted from timestamp to datetimes. Songplays is contructed from JSON file contents and query data (found in sql_queries.py) for song_id and artist_id.
+    
+    INPUTS:
+        cur: cursor object from the psycopg2 package
+        filepath: str. path to the log JSON file
+    """
+    
+    
     # open log file
     df = pd.read_json(filepath, lines=True)
 
@@ -69,8 +88,7 @@ def process_log_file(cur, filepath):
             songid, artistid = None, None
 
         # insert songplay record
-        songplay_data = (index,
-                         pd.Timestamp(row.ts, unit='ms'), 
+        songplay_data = (pd.Timestamp(row.ts, unit='ms'), 
                          row.userId, 
                          row.level, 
                          songid, 
