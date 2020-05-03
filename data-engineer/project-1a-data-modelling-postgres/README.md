@@ -17,17 +17,17 @@ This project builds a Postgres database and ETL process that prepares and loads 
 ## Database Schema
 Below is the entity relation schema for the sparkify databse. Names of the fact and dimension tables are also provided. The design is a star schema and optimized for analytic queries. In this sense few joins are needed in order to pull insights from the underlying data.
 
-<img src="img/sparkify-er-diagram.png" width=800 height=400 align="middle">
+<img src="img/sparkify-er-diagram.png" align="middle">
 
 ### Table Descrptions
 
 |Table Name | Type|
 |---|---|
-|songplays | fact | 
-|users | dimension| 
+|songplays | fact |
+|users | dimension|
 |songs | dimension |
 |artists | dimension|
-|time | dimension | 
+|time | dimension |
 
 ## ETL Processing
 
