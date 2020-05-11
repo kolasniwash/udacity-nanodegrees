@@ -6,7 +6,7 @@ This project builds a Redshift and ETL pipeline for sparkify a muisc streaming s
 ### Project Objectives
 
 1. Implement star schema in AWS Redshift
-2. Stage the data in Redshift
+2. Stage data from S3 into Redshift
 3. Load data from stage into star schema.
 
 ### Technologies Used
@@ -33,12 +33,11 @@ Below is the entity relation schema for the sparkify databse. Names of the fact 
 |time | dimension |
 
 ## ETL Processing
+The original data is stored in JSON format in two AWS s3 buckets. In this project we run the ETL process within the Redshift cluster. To do this we copy the data from S3 to a pair of redshift tables used as staging. The two staging tables represent the log records and the song list respectively. From there we transform and insert the data into the tables outlined in the star schema.
 
- 34 The original data is stored in JSON format and must be converted before being inserted into the database. The main processing steps ar    e:
- 35
- 36 1. The ts column from the logs file must be converted from a millisecond based timestamp to a datetime.
- 37 2. Values for hour, day, month, year, and day of the week must be extracted from the ts datetime value
- 38 3. Logs file must be filtered to contain only records of 'NextSong' value
- 39 4. Values from song_id and artist_id must be queried in order to complete absent columns in the songplays table.
-README.md
-
+## How to run script
+1. Launch a AWS redshift cluster with an IAM role that allows read access to S3.
+2. Open an incoming TCP port to be able to access the cluster.
+3. Add your DB's details and ARN to the ```dwh.cfg``` file.
+4. In the termal run ```python3 create_tables.py```
+5. Followed by ```python3 etl.py```
